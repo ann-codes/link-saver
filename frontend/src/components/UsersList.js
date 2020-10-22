@@ -2,8 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import PaperHeading from "./PaperHeading";
+
 import {
-  Container,
   Table,
   TableHead,
   TableBody,
@@ -27,7 +28,7 @@ const UsersList = () => {
 
   return (
     <div>
-      <h2>[ User Stats ]</h2>
+      <PaperHeading heading="User Statistics" />
       <Paper>
         <TableContainer>
           <Table>

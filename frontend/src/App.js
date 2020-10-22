@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <Container maxWidth="md">
-      <h1>[ [ Blog Links Lister ] ]</h1>
+      <h1>Link Saver</h1>
       <MessageBlock />
       {!user.token ? (
         <LoginForm />
@@ -36,9 +36,9 @@ const App = () => {
         <Fragment>
           <Navigation user={user} usersList={usersList} />
           <Switch>
+            <Route exact path="/blog-links" component={BlogList} />
             <Route exact path="/users" component={UsersList} />
             <Route exact path="/user/:id" component={UserStats} />
-            <Route exact path="/blog-links" component={BlogList} />
             <Route exact path="/blog/:id" component={BlogPage} />
             <Route exact path="/" component={UsersList} />
           </Switch>

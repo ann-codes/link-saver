@@ -38,8 +38,8 @@ const BlogList = () => {
 
   return (
     <>
-      <h2>[ Blog Links ]</h2>
-      <Togglable LabelOff="Cancel Add" LabelOn="Add New Blog">
+      <hr />
+      <Togglable LabelOff="Cancel Add" LabelOn="Add New Link">
         <BlogForm user={user} />
       </Togglable>
       <TableContainer component={Paper}>
