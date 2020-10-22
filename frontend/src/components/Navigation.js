@@ -23,7 +23,7 @@ const Navigation = ({ user, usersList }) => {
           size="large"
           startIcon={<ListAlt />}
         >
-          Blog Links
+          Link List
         </Button>
       </Link>{" "}
       <Link to="/users">

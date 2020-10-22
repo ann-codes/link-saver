@@ -6,11 +6,15 @@ body {
   font-size: 1.2rem;
 }
 
-h1,
-h2,
-h3 {
-  color: #c40044;
+h1 {
+  font-family: "Lily Script One", cursive;
+  color: #f50057;
   text-align: center;
+  font-size: 3em;
+}
+
+hr {
+  border: none;
 }
 
 a,
@@ -31,7 +35,7 @@ nav {
   text-align: center;
 }
 
-/* --- */
+/* -- CUSTOM -- */
 
 .add-blog-form {
   margin-bottom: 1rem;
@@ -46,6 +50,15 @@ nav {
 
 .paper-pad {
   padding: 1.2rem;
+}
+
+.paper-heading h2 {
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  background-color: #f50057;
+  padding: .8rem;
+  border-radius: 4px;
 }
 
 .success {

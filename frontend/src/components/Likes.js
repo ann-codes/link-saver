@@ -5,7 +5,7 @@ import AddCircleRoundedIcon from "@material-ui/icons/AddCircleRounded";
 const Likes = ({ likes, addLike }) => {
   return (
     <li>
-      <span>Total Lkes: {likes}</span>
+      <span>Total Likes: {likes}</span>
       <IconButton
         aria-label="delete"
         size="small"
