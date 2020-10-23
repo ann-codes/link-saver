@@ -6,6 +6,8 @@ import { loginUser } from "../reducers/loginReducer";
 import { Button, TextField, InputAdornment } from "@material-ui/core";
 import { AccountCircle, Lock as LockIcon } from "@material-ui/icons";
 
+import PaperHeading from "./PaperHeading";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
 
@@ -24,7 +26,7 @@ const LoginForm = () => {
 
   return (
     <div>
-      <h2>[ Login ]</h2>
+      <PaperHeading heading="Login" />
       <form onSubmit={handleLogin}>
         <div>
           <TextField
@@ -72,6 +74,7 @@ const LoginForm = () => {
             fullWidth
           />
         </div>
+        <hr />
         <div>
           <Button variant="contained" color="secondary" type="submit">
             Login

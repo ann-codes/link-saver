@@ -3,6 +3,7 @@ import Blog from "./Blog";
 import { useSelector } from "react-redux";
 import Togglable from "./Togglable";
 import BlogForm from "./BlogForm";
+import PaperHeading from "./PaperHeading";
 
 import {
   Table,
@@ -38,10 +39,8 @@ const BlogList = () => {
 
   return (
     <>
-      <hr />
-      <Togglable LabelOff="Cancel Add" LabelOn="Add New Link">
-        <BlogForm user={user} />
-      </Togglable>
+      <PaperHeading heading="Links Saved" />
+    
       <TableContainer component={Paper}>
         <Table className={classes.table}>
           <TableBody>
@@ -55,6 +54,10 @@ const BlogList = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <hr />
+      <Togglable LabelOff="Cancel Add" LabelOn="Add New Link">
+        <BlogForm user={user} />
+      </Togglable>
     </>
   );
 };

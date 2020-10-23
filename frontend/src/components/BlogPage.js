@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import CommentsList from "./CommentsList";
 import CommentAdd from "./CommentAdd";
 import Likes from "./Likes";
+import PaperHeading from "./PaperHeading";
 
 import { setMsgBlock, BLUE_MSG, RED_MSG } from "../reducers/msgBlockReducer";
 import { updateBlog, deleteBlog } from "../reducers/blogReducer";
@@ -79,7 +80,7 @@ const BlogPage = () => {
 
   return (
     <div>
-      <h2 className="bold-med">[ {blog.title} ]</h2>
+      <PaperHeading heading={blog.title} />
       <Paper>
         <div className="paper-pad">
           <ul>
