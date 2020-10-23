@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { findOneUserById } from "../reducers/findUserReducer";
 
 import { Paper } from "@material-ui/core";
+import PaperHeading from "./PaperHeading";
 
 const UserStats = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const UserStats = () => {
 
   return (
     <>
-      <h2>[ {user.name}'s Blog Links ]</h2>
+      <PaperHeading heading={`${user.name}'s Saved Links`} />
       <Paper>
         <div className="paper-pad">
           <ul>{mapBlogs.length > 0 ? mapBlogs : noneFound}</ul>
