@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setMsgBlock, RED_MSG } from "../reducers/msgBlockReducer";
 import { loginUser } from "../reducers/loginReducer";
@@ -18,8 +19,13 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await dispatch(loginUser({ username, password }));
+      return <Redirect to="/links" />;
     } catch (ex) {
-      dispatch(setMsgBlock(ex.response.data.error, RED_MSG, 3));
+      const errorMessage =
+        ex.response.data.error === undefined
+          ? "server not found"
+          : ex.response.data.error;
+      dispatch(setMsgBlock(`Error Logging In: ${errorMessage}`, RED_MSG, 3));
       // getting error message from json set in controller here ^^
     }
   };

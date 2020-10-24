@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../reducers/loginReducer";
 
@@ -11,12 +11,12 @@ const Navigation = ({ user, usersList }) => {
   const id = usersList.find((u) => u.name === user.name);
 
   if (!id) {
-    return <p>Loading...</p>;
+    return <Redirect to="/404" />;
   }
 
   return (
     <nav>
-      <Link to="/blog-links">
+      <Link to="/links">
         <Button
           variant="outlined"
           color="secondary"

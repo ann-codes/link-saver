@@ -40,7 +40,7 @@ const BlogList = () => {
   return (
     <>
       <PaperHeading heading="Links Saved" />
-    
+
       <TableContainer component={Paper}>
         <Table className={classes.table}>
           <TableBody>
@@ -48,7 +48,9 @@ const BlogList = () => {
               blogsList
             ) : (
               <TableRow>
-                <TableCell>No Links Found</TableCell>
+                <TableCell>
+                  <span>No Links Found</span>
+                </TableCell>
               </TableRow>
             )}
           </TableBody>

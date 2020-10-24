@@ -68,7 +68,7 @@ const BlogPage = () => {
       try {
         await dispatch(deleteBlog(blog.id, user.token));
         dispatch(setMsgBlock("BLOG DELETED", BLUE_MSG, 3));
-        history.push("/blog-links");
+        history.push("/links");
         history.go(); // reload and rerender has delay... :(
       } catch (ex) {
         dispatch(setMsgBlock(ex.response.data.error, RED_MSG, 3));
