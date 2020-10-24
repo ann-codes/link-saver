@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { findOneUserById } from "../reducers/findUserReducer";
 
-import { Paper } from "@material-ui/core";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableContainer,
+  TableRow,
+  TableCell,
+} from "@material-ui/core";
 import PaperHeading from "./PaperHeading";
 
 const UserStats = () => {
@@ -16,22 +23,36 @@ const UserStats = () => {
   }, [dispatch, id]);
 
   if (!user) {
-    return <p>Searching for user...</p>;
+    return <PaperHeading heading="Searching for user..." />;
   } else if (!user.blogs) {
-    return <p>Searching for user...</p>;
+    return <PaperHeading heading="Searching for user..." />;
   }
 
-  const mapBlogs = user.blogs.map((b) => <li key={b.id}>{b.title}</li>);
-  const noneFound = <li>{user.name} has not submitted any blog links. </li>;
+  const mappedBlogs =
+    user.blogs.length > 0 ? (
+      user.blogs.map((b) => (
+        <TableRow hover={true}>
+          <TableCell key={b.id}>
+            <Link to={`/blog/${b.id}`}>{b.title}</Link>
+          </TableCell>
+        </TableRow>
+      ))
+    ) : (
+      <TableRow hover={true}>
+        <TableCell>
+          <span>{user.name} has not submitted any blog links.</span>
+        </TableCell>
+      </TableRow>
+    );
 
   return (
     <>
       <PaperHeading heading={`${user.name}'s Saved Links`} />
-      <Paper>
-        <div className="paper-pad">
-          <ul>{mapBlogs.length > 0 ? mapBlogs : noneFound}</ul>
-        </div>
-      </Paper>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableBody>{mappedBlogs}</TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 };
