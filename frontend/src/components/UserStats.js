@@ -31,8 +31,8 @@ const UserStats = () => {
   const mappedBlogs =
     user.blogs.length > 0 ? (
       user.blogs.map((b) => (
-        <TableRow hover={true}>
-          <TableCell key={b.id}>
+        <TableRow key={b.id}>
+          <TableCell>
             <Link to={`/blog/${b.id}`}>{b.title}</Link>
           </TableCell>
         </TableRow>
