@@ -1,6 +1,7 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
+import LoginHelperModal from "./components/LoginHelperModal";
 import MessageBlock from "./components/MessageBlock";
 import Navigation from "./components/Navigation";
 import UsersList from "./components/UsersList";
@@ -17,6 +18,10 @@ import { Container } from "@material-ui/core";
 import "./App.css";
 
 const App = () => {
+  const [open, setOpen] = useState(true);
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
   const user = useSelector((state) => state.user);
   const blogs = useSelector((state) => state.blogs);
   const usersList = useSelector((state) => state.usersList);
@@ -34,10 +39,17 @@ const App = () => {
         <h1>Link Saver</h1>
         <MessageBlock />
         {!user.token ? (
-          <LoginForm />
+          <Fragment>
+            <LoginForm />
+            <LoginHelperModal open={open} onCloseModal={onCloseModal} />
+          </Fragment>
         ) : (
           <Fragment>
-            <Navigation user={user} usersList={usersList} />
+            <Navigation
+              user={user}
+              usersList={usersList}
+              onOpenModal={onOpenModal}
+            />
             <Switch>
               <Route exact path="/links" component={BlogList} />
               <Route exact path="/users" component={UsersList} />
