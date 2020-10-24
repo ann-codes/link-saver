@@ -6,13 +6,18 @@ import { logoutUser } from "../reducers/loginReducer";
 import { Button } from "@material-ui/core";
 import { ListAlt, Equalizer, AccountBox, ExitToApp } from "@material-ui/icons";
 
-const Navigation = ({ user, usersList }) => {
+const Navigation = ({ user, usersList, onOpenModal }) => {
   const dispatch = useDispatch();
   const id = usersList.find((u) => u.name === user.name);
 
   if (!id) {
     return <Redirect to="/404" />;
   }
+
+  const logoutClick = () => {
+    onOpenModal();
+    dispatch(logoutUser());
+  };
 
   return (
     <nav>
@@ -50,7 +55,7 @@ const Navigation = ({ user, usersList }) => {
         variant="outlined"
         color="secondary"
         size="large"
-        onClick={() => dispatch(logoutUser())}
+        onClick={logoutClick}
         startIcon={<ExitToApp />}
       >
         Logout
