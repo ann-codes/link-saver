@@ -9,6 +9,7 @@ import LoginForm from "./components/LoginForm";
 import BlogList from "./components/BlogList";
 import BlogPage from "./components/BlogPage";
 import Footer from "./components/Footer";
+import Error404 from "./components/Error404";
 import { initBlogs } from "./reducers/blogReducer";
 import { initUsers } from "./reducers/usersReducer";
 import { setUserByLocalStorage } from "./reducers/loginReducer";
@@ -38,11 +39,12 @@ const App = () => {
           <Fragment>
             <Navigation user={user} usersList={usersList} />
             <Switch>
-              <Route exact path="/blog-links" component={BlogList} />
+              <Route exact path="/links" component={BlogList} />
               <Route exact path="/users" component={UsersList} />
               <Route exact path="/user/:id" component={UserStats} />
               <Route exact path="/blog/:id" component={BlogPage} />
               <Route exact path="/" component={UsersList} />
+              <Route exact path="/404" component={Error404} />
             </Switch>
           </Fragment>
         )}
