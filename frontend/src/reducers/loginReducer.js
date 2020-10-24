@@ -20,9 +20,13 @@ const loginReducer = (
 
 export const loginUser = (creds) => async (dispatch) => {
   const user = await loginSvs.login(creds);
-  window.localStorage.setItem("bloglist-token", JSON.stringify(user));
-  blogSvs.setToken(user.token);
-  dispatch({ type: LOGIN, data: user });
+  try {
+    window.localStorage.setItem("bloglist-token", JSON.stringify(user));
+    blogSvs.setToken(user.token);
+    dispatch({ type: LOGIN, data: user });
+  } catch (e) {
+    console.log("ERORRRRR ====> ", e);
+  }
 };
 
 export const logoutUser = () => async (dispatch) => {

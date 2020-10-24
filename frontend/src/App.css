@@ -35,6 +35,21 @@ nav {
   text-align: center;
 }
 
+footer {
+  background-color: rgb(221, 221, 221);
+  color: rgb(180, 180, 180);
+  position: fixed;
+  padding: 0.8rem;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+}
+
+footer a,
+footer a:hover {
+  color: rgb(180, 180, 180);
+}
+
 /* -- CUSTOM -- */
 
 .add-blog-form {

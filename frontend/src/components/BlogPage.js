@@ -33,9 +33,9 @@ const BlogPage = () => {
   }, [blog.likes, blog.comments]);
 
   if (!blog || !commentsList) {
-    return <p>Searching for blog...</p>;
+    return <PaperHeading heading="Searching for link..." />;
   } else if (!blog.user) {
-    return <p>Searching for blog...</p>;
+    return <PaperHeading heading="Searching for link..." />;
   }
 
   const addLike = async () => {

@@ -4,7 +4,7 @@ import PaperHeading from "./PaperHeading";
 
 const CommentsList = ({ commentsList }) => {
   const mappedComments =
-    commentsList > 0 ? (
+    commentsList.length > 0 ? (
       commentsList.map((c, i) => <li key={`${i}-comment`}>{c}</li>)
     ) : (
       <li>No comments found. Add your comment below.</li>
