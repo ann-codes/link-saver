@@ -31,7 +31,6 @@ const BlogForm = ({ user }) => {
 
   return (
     <div>
-      <h2>Add New Link</h2>
       <BlogFormInputs
         submitNewBlog={submitNewBlog}
         handleNewBlogChange={handleNewBlogChange}
