@@ -9,6 +9,7 @@ const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
 const logger = require("./utils/logger");
 const mongoose = require("mongoose");
+const masterSeeder = require("./seeders/masterSeeder")
 
 logger.info("[ Connecting to", config.MONGODB_URI, "]");
 
@@ -43,5 +44,8 @@ if (process.env.NODE_ENV === "test") {
   const testingRouter = require("./controllers/testing");
   app.use("/api/testing", testingRouter);
 }
+
+// seeding
+app.use(masterSeeder)
 
 module.exports = app;
