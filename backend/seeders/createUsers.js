@@ -1,17 +1,8 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const newUsers = require("./dataUsers")
 
 const createUsers = async () => {
-  //   await User.deleteMany({});
-
-  const newUsers = [
-    { name: "Zeus SassyCat", username: "CoolCat" },
-    { name: "Ann Nguyen", username: "AnnCodes" },
-    { name: "Adam Dude", username: "AdamGuy" },
-    { name: "Finn T. Oddler", username: "SuperTot" },
-    { name: "Watt B. Aby", username: "LilBabe" },
-  ];
-
   const passwordHash = await bcrypt.hash("SecurePW", 10);
 
   newUsers.forEach(async (user) => {
