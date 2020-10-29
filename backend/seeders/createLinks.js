@@ -2,48 +2,82 @@ const Blog = require("../models/blog");
 const User = require("../models/user");
 const dataComments = require("./dataComments");
 const dataLinks = require("./dataLinks");
-const users = require("./dataUsers");
+// const users = require("./dataUsers");
 
 const randomToMax = (max) => Math.ceil(Math.random() * max);
-const maxLinks = 2; // range is 1 to n
+const maxLinks = 4; // range is 1 to n
 const maxComments = 6; // range is 0 to n-1
 
 const createLinks = async () => {
+  console.log("[ Deleting links ]");
+  await Blog.deleteMany({});
+  console.log("[ Creating links ]");
+
   const comments = Object.assign(dataComments);
   const links = Object.assign(dataLinks);
 
-  users.forEach(async (user) => {
+  const allUsers = await User.find({});
+  console.log("ALL ====================================", allUsers);
+
+  allUsers.forEach(async (user) => {
     const commentsAllowed = randomToMax(maxComments);
     const linksAllowed = randomToMax(maxLinks);
 
-    const allUsers = await User.find({});
-    console.log("ALL ====================================", allUsers);
+    for (let i = linksAllowed; i > 0; i--) {
+      const linkIndex = Math.ceil(Math.random() * links.length);
+      const randomLink = links.splice(linkIndex, 1);
 
-    // // get account info for ID ==== do I need this?
-    // const foundUser = await User.findOne({ username: user.username });
-    // console.log("found user ===>", foundUser.name, foundUser.id); ///
+      // console.log(
+      //   "--------------------- new ---------------------",
+      //   "\nADDING LINK ==>",
+      //   randomLink[0].url,
+      //   "\nLINK INDEX ==>",
+      //   linkIndex
+      // ); ///////////////////////////////////////////////
 
-    ///================ start here
+      const linkObj = {};
+      let newComments = [];
 
-    // make test blog add to existing for structure
-    // then loop through all users to add links
+      if (randomLink[0].url !== undefined) {
+        for (let i = commentsAllowed; i > 1; i--) {
+          // make greater than 1 for chance of zero comments
+          const commentsIndex = Math.ceil(Math.random() * comments.length);
+          newComments = newComments.concat(comments.splice(commentsIndex, 1));
+        }
 
-    // create the comments, mutate comments obj to have unique
+        try {
+          linkObj.title = randomLink[0].title;
+          linkObj.author = user.name;
+          linkObj.url = randomLink[0].url;
+          linkObj.likes = randomToMax(20);
+          linkObj.comments = newComments;
+        } catch (e) {
+          console.log("ERROR ====>", e);
+        }
 
-    // create the link object, mutate links to make sure you have unique
+        // console.log(
+        //   "REMAINING LINKS ==>",
+        //   links.length,
+        //   "\nOBJ CHECK ==>",
+        //   linkObj._id
+        // ); ///////////////////////////////////////////////
 
-    // this goes inside the create links loop
-    let newComments = [];
-    // make greater than 1 for chance of zero comments
-    for (let i = commentsAllowed; i > 1; i--) {
-      const commentIndex = Math.ceil(Math.random() * comments.length);
-      newComments = newComments.concat(comments.splice(commentIndex, 1));
+        try {
+          linkObj.user = user._id;
+          const linkToSave = new Blog(linkObj);
+          const savedLink = await linkToSave.save();
+          user.blogs = await user.blogs.concat(savedLink._id);
+          await user.save();
+
+          // console.log("POST SUCCESS CHECK ==>", linkObj._id); //////////
+        } catch (e) {
+          console.log("ERROR :>> ", e);
+        }
+      }
     }
-    console.log("new comments", newComments); /////
-    console.log(comments.length);
   });
 
-  console.log("ALL USERS", users);
+  console.log("[ All links created ]");
 };
 
 module.exports = createLinks;

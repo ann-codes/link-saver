@@ -1,8 +1,12 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
-const newUsers = require("./dataUsers")
+const newUsers = require("./dataUsers");
 
 const createUsers = async () => {
+  console.log("[ Deleting users ]");
+  await User.deleteMany({});
+  console.log("[ Creating users ]");
+
   const passwordHash = await bcrypt.hash("SecurePW", 10);
 
   newUsers.forEach(async (user) => {
@@ -18,6 +22,8 @@ const createUsers = async () => {
       console.error("ERROR:", e);
     }
   });
+
+  console.log("[ All users created ]");
 };
 
 module.exports = createUsers;

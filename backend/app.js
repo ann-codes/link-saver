@@ -46,6 +46,6 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // seeding
-app.use(masterSeeder)
+app.use(masterSeeder);
 
 module.exports = app;
