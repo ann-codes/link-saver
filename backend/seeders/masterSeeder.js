@@ -4,10 +4,21 @@ const createUsers = require("./createUsers");
 const createLinks = require("./createLinks");
 
 const masterSeeder = async () => {
-  // await User.deleteMany({});
-  // await createUsers();
-  // await Blog.deleteMany({});
-  await createLinks();
+  console.log("[ Running seeder ]");
+
+  try {
+    await createUsers();
+  } catch (e) {
+    console.log("ERROR CREATING USERS ==>", e);
+  }
+
+  try {
+    await createLinks();
+  } catch (e) {
+    console.log("ERROR CREATING LINKS ==>", e);
+  }
+
+  console.log("[ Seeding done ]");
 };
 
 masterSeeder();

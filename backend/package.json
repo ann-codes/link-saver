@@ -9,7 +9,8 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
     "logs:prod": "heroku logs --tail",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "seed": "node seeders/masterSeeder.js"
   },
   "author": "Ann Nguyen",
   "license": "MIT",
