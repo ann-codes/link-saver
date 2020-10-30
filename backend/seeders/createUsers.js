@@ -3,8 +3,8 @@ const User = require("../models/user");
 const newUsers = require("./dataUsers");
 
 const createUsers = async () => {
-  console.log("[ Deleting users ]");
-  await User.deleteMany({});
+  // console.log("[ Deleting users ]");
+  // await User.deleteMany({}); // seeding fails at delete for npm run seed
   console.log("[ Creating users ]");
 
   const passwordHash = await bcrypt.hash("SecurePW", 10);

@@ -9,8 +9,8 @@ const maxLinks = 4; // range is 1 to n
 const maxComments = 6; // range is 0 to n-1
 
 const createLinks = async () => {
-  console.log("[ Deleting links ]");
-  await Blog.deleteMany({});
+  // console.log("[ Deleting links ]");
+  // await Blog.deleteMany({}); // seeding fails at delete for npm run seed
   console.log("[ Creating links ]");
 
   const comments = Object.assign(dataComments);
@@ -27,18 +27,20 @@ const createLinks = async () => {
       const linkIndex = Math.ceil(Math.random() * links.length);
       const randomLink = links.splice(linkIndex, 1);
 
-      // console.log(
-      //   "--------------------- new ---------------------",
-      //   "\nADDING LINK ==>",
-      //   randomLink[0].url,
-      //   "\nLINK INDEX ==>",
-      //   linkIndex
-      // ); ///////////////////////////////////////////////
+      console.log(
+        "--------------------- new ---------------------",
+        "\nADDING LINK ==>",
+        randomLink[0].url,
+        "\nLINK INDEX ==>",
+        linkIndex
+      ); ///////////////////////////////////////////////
 
       const linkObj = {};
       let newComments = [];
 
       if (randomLink[0].url !== undefined) {
+        // checks for undefined before attempting to create record to add
+
         for (let i = commentsAllowed; i > 1; i--) {
           // make greater than 1 for chance of zero comments
           const commentsIndex = Math.ceil(Math.random() * comments.length);
@@ -55,12 +57,12 @@ const createLinks = async () => {
           console.log("ERROR ====>", e);
         }
 
-        // console.log(
-        //   "REMAINING LINKS ==>",
-        //   links.length,
-        //   "\nOBJ CHECK ==>",
-        //   linkObj._id
-        // ); ///////////////////////////////////////////////
+        console.log(
+          "REMAINING LINKS ==>",
+          links.length,
+          "\nOBJ CHECK ==>",
+          linkObj._id
+        ); ///////////////////////////////////////////////
 
         try {
           linkObj.user = user._id;
