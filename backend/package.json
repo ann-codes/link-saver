@@ -10,7 +10,7 @@
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
     "logs:prod": "heroku logs --tail",
     "lint": "eslint .",
-    "seed": "node seeders/masterSeeder.js"
+    "seed": "cross-env NODE_ENV=production node seeders/masterSeeder.js"
   },
   "author": "Ann Nguyen",
   "license": "MIT",
